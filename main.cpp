@@ -9,8 +9,9 @@ int main(){
 	int arr_size = 4;
 	int arr[] = {7, 2, 15, 9};
 	int sort_arr[arr_size];
-
-	mergeSort(arr, sort_arr, 0, arr_size-1);
+	copy(arr,arr+4,sort_arr);
+	cout << sort_arr[0] << endl;
+	//mergeSort(arr, sort_arr, 0, arr_size-1);
 
 }
 
