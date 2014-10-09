@@ -2,20 +2,26 @@
 
 using namespace std;
 
-void mergeSort(int[], int[], int, int);
-void merge(int[], int[], int, int, int, int);
+void mergeSort(int*, int*, int, int);
+void merge(int*, int*, int, int, int, int);
 
 int main(){
 	int arr_size = 4;
-	int arr[] = {7, 2, 15, 9};
-	int sort_arr[arr_size];
-	copy(arr,arr+4,sort_arr);
-	cout << sort_arr[0] << endl;
-	//mergeSort(arr, sort_arr, 0, arr_size-1);
+	int * arr = new int[arr_size];
+	arr[0] = 7;
+	arr[1] = 2;
+	arr[2] = 15;
+	arr[3] = 9;
+
+	int * sort_arr = new int[arr_size];
+
+	//copy(arr,arr+4,sort_arr);
+
+	mergeSort(arr, sort_arr, 0, arr_size-1);
 
 }
 
-void mergeSort(int arr[], int sort_arr[], int start, int end){
+void mergeSort(int * arr, int * sort_arr, int start, int end){
 
 	if(end > start){
 
@@ -34,7 +40,7 @@ void mergeSort(int arr[], int sort_arr[], int start, int end){
 
 }
 
-void merge(	int arr[], int sort_arr[],
+void merge(	int * arr, int * sort_arr,
 			int first_start, int first_end,
 			int second_start, int second_end) {
 
@@ -44,20 +50,30 @@ void merge(	int arr[], int sort_arr[],
 	cout << "2 STR: " << second_start << endl;
 	cout << "2 END: " << second_end << endl << endl;
 
-	int sort_arr_pos = first_start;
+	int sort_arr_pos = 0;
+	int sort_arr_len = (second_end - first_start)+1;
 
-	while(first_start <= first_end || second_start <= second_end) {
+	sort_arr = new int[sort_arr_len];
 
-		if(arr[first_start] < arr[second_start]) {
-			sort_arr[sort_arr_pos] = arr[first_start];
+	while(sort_arr_pos < sort_arr_len) {
+
+		if(	first_start <= first_end 
+			&& 
+			arr[first_start] < arr[second_start]) 
+		{
+			//sort_arr[sort_arr_pos] = arr[first_start];
+			cout << "First " << first_start << ": " << arr[first_start] << endl;
 			first_start++;
 		}
-		else {
-			sort_arr[sort_arr_pos] = arr[second_start];
+		else if(	second_start <= second_end
+					&&
+					arr[second_start] < arr[first_start])
+		{
+			//sort_arr[sort_arr_pos] = arr[second_start];
+			cout << "Second " << second_start << ": " << arr[second_start] << endl;
 			second_start++;
 		}
-
+		cout << endl;
 		sort_arr_pos++;
 	}
-
 }
