@@ -9,6 +9,8 @@ void merge(int*, int*, int, int, int, int);
 
 void bubbleSort(int*, int);
 
+void selectionSort(int*, int, int);
+
 int main(){
 	int arr_size = 4;
 
@@ -22,6 +24,7 @@ int main(){
 
 	//mergeSort(arr, sort_arr, 0, arr_size-1);
 	//bubbleSort(arr, arr_size);
+	//selectionSort(arr, arr_size, 0);
 
 }
 
@@ -107,3 +110,26 @@ void bubbleSort(int * arr, int size){
 	}
 }
 
+void selectionSort(int * arr, int size, int start) {
+
+	if(start < size) {
+
+		int small_pos = start;
+
+		// Find smallest element
+		for(int i = start+1; i < size; i++) {
+			if(arr[i] < arr[small_pos]){
+				small_pos = i;
+			}
+		}
+
+
+		// Swap smallest
+		int temp = arr[start];
+		arr[start] = arr[small_pos];
+		arr[small_pos] = temp;
+
+		// Sort rest of array
+		selectionSort(arr, size, ++start);
+	}
+}
