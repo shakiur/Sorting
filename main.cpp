@@ -2,8 +2,12 @@
 
 using namespace std;
 
+void display(int *, int);
+
 void mergeSort(int*, int*, int, int);
 void merge(int*, int*, int, int, int, int);
+
+void bubbleSort(int*, int);
 
 int main(){
 	int arr_size = 4;
@@ -16,8 +20,15 @@ int main(){
 
 	int * sort_arr = new int[arr_size];
 
-	mergeSort(arr, sort_arr, 0, arr_size-1);
+	//mergeSort(arr, sort_arr, 0, arr_size-1);
+	//bubbleSort(arr, arr_size);
 
+}
+
+void display(int * arr, int size) {
+	for(int i = 0; i < size; i++){
+		cout << arr[i] << endl;
+	}
 }
 
 void mergeSort(int * arr, int * sort_arr, int start, int end){
@@ -76,3 +87,23 @@ void merge(	int * arr, int * sort_arr,
 	copy(sort_arr, sort_arr + sort_arr_len, arr + orig_first_start);
 	
 }
+
+void bubbleSort(int * arr, int size){
+
+	int i = 0;
+
+	while(i < (size-1)) {
+
+		if(arr[i] > arr[i+1]){
+
+			int temp = arr[i];
+			arr[i] = arr[i+1];
+			arr[i+1] = temp;
+			i=0;
+
+		}
+		i++;
+
+	}
+}
+
