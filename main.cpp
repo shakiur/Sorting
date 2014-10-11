@@ -22,9 +22,14 @@ int main(){
 
 	int * sort_arr = new int[arr_size];
 
+	cout << "=====Before Bubble Sort=====" << endl;
+	display(arr, arr_size);
 	//mergeSort(arr, sort_arr, 0, arr_size-1);
-	//bubbleSort(arr, arr_size);
+	bubbleSort(arr, arr_size);
 	//selectionSort(arr, arr_size, 0);
+
+	//cout << "=====After Bubble Sort=====" << endl;
+	//display(arr, arr_size);
 
 }
 
@@ -88,24 +93,25 @@ void merge(	int * arr, int * sort_arr,
 
 	// Copy sorted array into original array
 	copy(sort_arr, sort_arr + sort_arr_len, arr + orig_first_start);
+
+	delete[] sort_arr;
 	
 }
 
 void bubbleSort(int * arr, int size){
 
-	int i = 0;
+	if(size > 0){
 
-	while(i < (size-1)) {
+		for(int i = 0; i < (size-1); i++){
 
-		if(arr[i] > arr[i+1]){
-
-			int temp = arr[i];
-			arr[i] = arr[i+1];
-			arr[i+1] = temp;
-			i=0;
-
+			if(arr[i+1] < arr[i]) {
+				int temp = arr[i];
+				arr[i] = arr[i+1];
+				arr[i+1] = temp;
+			}
 		}
-		i++;
+
+		bubbleSort(arr,size-1);
 
 	}
 }
