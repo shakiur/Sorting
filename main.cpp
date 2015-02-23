@@ -27,6 +27,7 @@ int main(){
 	//mergeSort(arr, sort_arr, 0, arr_size-1);
 	//bubbleSort(arr, arr_size);
 	//selectionSort(arr, arr_size, 0);
+	insertSort(arr, arr_size);
 
 }
 
@@ -137,10 +138,30 @@ void selectionSort(int * arr, int size, int start) {
 }
 
 void insertSort(int* arr, int size){
+	int low_pos;
+	int temp;
+
 	for(int i = 1; i < size; i++){
+
 		if(arr[i] < arr[i-1]){
-			// Find lowest position it can go
 			
+			// Find lowest position it can go
+			for(int j = (i-1); j > 0; j--){
+				if(arr[j] < arr[i])
+					low_pos = j;
+			}
+
+			// Shift all numbers forward
+			temp = arr[i];
+
+			for(int k = low_pos; k < i; k++){
+				arr[k + 1] = arr[k];
+			}
+
+			arr[low_pos] = temp;
+
 		}
 	}
+
+
 }
