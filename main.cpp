@@ -4,8 +4,8 @@ using namespace std;
 
 void display(int *, int);
 
-void mergeSort(int*, int*, int, int);
-void merge(int*, int*, int, int, int, int);
+void mergeSort(int*, int, int);
+void merge(int*, int, int, int, int);
 
 void bubbleSort(int*, int);
 
@@ -22,9 +22,7 @@ int main(){
 	arr[2] = 15;
 	arr[3] = 9;
 
-	int * sort_arr = new int[arr_size];
-
-	//mergeSort(arr, sort_arr, 0, arr_size-1);
+	//mergeSort(arr, 0, arr_size-1);
 	//bubbleSort(arr, arr_size);
 	//selectionSort(arr, arr_size, 0);
 	insertSort(arr, arr_size);
@@ -37,22 +35,22 @@ void display(int * arr, int size) {
 	}
 }
 
-void mergeSort(int * arr, int * sort_arr, int start, int end){
+void mergeSort(int * arr, int start, int end){
 
 	if(end > start){
 
 		int middle = ((end-start)/2) + start;
 
-		mergeSort(arr, sort_arr, start, middle);
-		mergeSort(arr, sort_arr, middle + 1,end);
+		mergeSort(arr, start, middle);
+		mergeSort(arr, middle + 1,end);
 
-		merge(arr, sort_arr, start, middle, middle + 1, end);
+		merge(arr, start, middle, middle + 1, end);
 
 	}
 
 }
 
-void merge(	int * arr, int * sort_arr,
+void merge(	int * arr,
 			int first_start, int first_end,
 			int second_start, int second_end) {
 
@@ -62,7 +60,7 @@ void merge(	int * arr, int * sort_arr,
 	int sort_arr_pos = 0;
 	int sort_arr_len = (second_end - first_start)+1;
 
-	sort_arr = new int[sort_arr_len];
+	int * sort_arr = new int[sort_arr_len];
 
 	while(sort_arr_pos < sort_arr_len) {
 
@@ -91,24 +89,25 @@ void merge(	int * arr, int * sort_arr,
 
 	// Copy sorted array into original array
 	copy(sort_arr, sort_arr + sort_arr_len, arr + orig_first_start);
+
+	delete[] sort_arr;
 	
 }
 
 void bubbleSort(int * arr, int size){
 
-	int i = 0;
+	while(size > 0){
 
-	while(i < (size-1)) {
+		for(int i = 0; i < (size-1); i++){
 
-		if(arr[i] > arr[i+1]){
-
-			int temp = arr[i];
-			arr[i] = arr[i+1];
-			arr[i+1] = temp;
-			i=0;
-
+			if(arr[i+1] < arr[i]) {
+				int temp = arr[i];
+				arr[i] = arr[i+1];
+				arr[i+1] = temp;
+			}
 		}
-		i++;
+
+		size--;
 
 	}
 }
