@@ -11,6 +11,8 @@ void bubbleSort(int*, int);
 
 void selectionSort(int*, int, int);
 
+void insertSort(int*, int);
+
 int main(){
 	int arr_size = 4;
 
@@ -131,5 +133,14 @@ void selectionSort(int * arr, int size, int start) {
 
 		// Sort rest of array
 		selectionSort(arr, size, ++start);
+	}
+}
+
+void insertSort(int* arr, int size){
+	for(int i = 1; i < size; i++){
+		if(arr[i] < arr[i-1]){
+			// Find lowest position it can go
+			
+		}
 	}
 }
