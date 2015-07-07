@@ -8,17 +8,22 @@ void mergeSort(int*, int, int);
 
 void merge(int*, int, int, int, int);
 
-void display(int*, int);
+void display(int*, int, int);
 
 int main(){
-    int size = 5;
+    int begin = 0;
+    int end = 4;
     int arr[5] = {5, 4, 3, 2, 1};
 
-    display(arr, size);
+    std::cout << "Initial Array: ";
+    display(arr, begin, end);
+    std::cout << std::endl;
 
-    mergeSort(arr, 0, size-1);
+    mergeSort(arr, begin, end);
 
-    display(arr, size);
+    std::cout << "Sorted Array: ";
+    display(arr, begin, end);
+    std::cout << std::endl;
 }
 
 void mergeSort(int* arr, int begin, int end){
@@ -34,14 +39,16 @@ void mergeSort(int* arr, int begin, int end){
 
 void merge(int* arr, int beg1, int end1, int beg2, int end2){
 
-    /*
+    
     // Debug Info
-    std::cout << "arr[" << beg1 << "]: " << arr[beg1] << std::endl;
-    std::cout << "arr[" << end1 << "]: "<< arr[end1] << std::endl;
-    std::cout << "arr[" << beg2 << "]: "<< arr[beg2] << std::endl;
-    std::cout << "arr[" << end2 << "]: "<< arr[end2] << std::endl;
+    std::cout << "arr[" << beg1 << ".." << end1 << "]: ";
+    display(arr, beg1, end1);
+
+    std::cout << "arr[" << beg2 << ".." << end2 << "]: ";
+    display(arr, beg2, end2);
+
     std::cout << std::endl;
-    */
+    
 
     int copy_bgn = beg1;
     int pos = 0;
@@ -75,13 +82,17 @@ void merge(int* arr, int beg1, int end1, int beg2, int end2){
         ++pos;
     }
 
+    std::cout << "New Array: ";
+    display(new_arr, 0, new_size - 1);
+    std::cout << std::endl;
+
     // Copies new "mini-sorted" array into main array
     std::copy(new_arr, new_arr + new_size, arr + copy_bgn);
 
 }
 
-void display(int* arr, int size){
-    for(int i = 0; i < size; i++)
+void display(int* arr, int beg, int size){
+    for(int i = beg; i <= size; i++)
         std::cout << arr[i] << " ";
     std::cout << std::endl;
 }
